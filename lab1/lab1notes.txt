@@ -76,11 +76,11 @@ Uninitialized variables
         System.out.println(x);
 
 
-will not compile!
+
 
     What about C?
 
-it will print whatever happens to be at that spot
+
 
 ////////////////////////////
 
@@ -104,7 +104,7 @@ int age = 10;
 
 want to print: I am 10 years old
 
-printf("I am %d years old\n", age);
+
 
 
 
@@ -117,18 +117,11 @@ double pi = 3.14159;
 
 printf("Pi is: %lf\n", pi);
 
-Pi is 3.14159
+
 
 
 printf("Value is: %.2lf\n", pi);
 
-Pi is 3.14
-
-
-
-printf("Spaced out: %6.2lf\n", pi);
-
-Spaced out   3.14
 
 
 
@@ -144,12 +137,16 @@ getchar
 
 char letter = getchar();
 
+
 scanf
     - 1st argument: control string describing input format (like printf)
     - next arguments: memory addresses of where to store each value
 
-int num;
-scanf("%d", &num);
+
+
+char c;
+
+--> use scanf to read a char into c
 
 //////////////////////////
 
@@ -159,13 +156,10 @@ int age;
 double gpa;
 
 //print prompt, read in age
-printf("Enter age: ");
-scanf("%d", &age);
+
 
 //print prompt, read in gpa
 
-printf("Enter GPA: ");
-scanf("%lf", &gpa);
 
 
 /////////////////////////////
@@ -177,7 +171,6 @@ printf("Enter fraction, like 3/5: ");
 
 
 //read into num and denom
-scanf("%d/%d", &num, &denom);
 
 
 
@@ -191,29 +184,26 @@ scanf("%d/%d", &num, &denom);
 
 Conditional statements
 
-same
+
 
 
 //////////////////////////
 
 Loops
 
-for, while, do-while
+
 
 
 ///////////////////////////
 
 Functions
 
-returnType functionName(paramList) {
 
-}
 
 
 Function prototypes
-    - what if we leave them off?
 
-returnType functionName(paramList);
+
 
 ///////////////////////////
 
