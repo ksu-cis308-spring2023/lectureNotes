@@ -76,10 +76,11 @@ Uninitialized variables
         System.out.println(x);
 
 
-
+        x may not have been initialized (compiler error)
 
     What about C?
 
+    it will print whatever happened to be at that spot
 
 
 ////////////////////////////
@@ -104,7 +105,7 @@ int age = 10;
 
 want to print: I am 10 years old
 
-
+printf("I am %d years old\n", age);
 
 
 
@@ -117,12 +118,13 @@ double pi = 3.14159;
 
 printf("Pi is: %lf\n", pi);
 
+Pi is 3.14159
 
 
 
 printf("Value is: %.2lf\n", pi);
 
-
+Pi is 3.14 
 
 
 
@@ -142,9 +144,11 @@ scanf
     - 1st argument: control string describing input format (like printf)
     - next arguments: memory addresses of where to store each value
 
+scanf("describe the input", corresponding memory addresses);
 
 
 char c;
+scanf("%c", &c);
 
 --> use scanf to read a char into c
 
@@ -156,11 +160,13 @@ int age;
 double gpa;
 
 //print prompt, read in age
-
+printf("Enter age: ");
+scanf("%d", &age);
 
 //print prompt, read in gpa
 
-
+printf("Enter gpa: ");
+scanf("%lf", &gpa);
 
 /////////////////////////////
 
@@ -172,7 +178,7 @@ printf("Enter fraction, like 3/5: ");
 
 //read into num and denom
 
-
+scanf("%d/%d", &num, &denom);
 
 
 
@@ -184,24 +190,37 @@ printf("Enter fraction, like 3/5: ");
 
 Conditional statements
 
+if, if/else, if/else if, switch
 
+same!
 
 
 //////////////////////////
 
 Loops
 
+for, while, do-while, foreach
 
-
+same on first 3, no foreach
 
 ///////////////////////////
 
 Functions
 
-
+returnType name(params)
 
 
 Function prototypes
+
+void functionName(int a, int b);
+
+
+functionName(0,1);
+
+
+void functionName(int a, int b) {
+
+}
 
 
 
