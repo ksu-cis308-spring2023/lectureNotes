@@ -50,14 +50,10 @@ nums = vals;        //<-- can we do this?
 
 ////////////////////////
 
-** The latest C compilers do allow variable-sized 
-arrays...but some still use older language standard
-where it is not allowed.
+** The current C language standard marks variable-length
+arrays as *optional*. Some current compilers support them, and 
+some do not.
 
-
-
-Variable-sized arrays (on the stack) are not allowed
-in C++.
 
 --> please use constant sized arrays in this class
 
