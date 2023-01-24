@@ -28,13 +28,13 @@ allocated on the heap)
 
 Declaration:
 
-type name[size];    //size must be constant!
+type name[size];    //size must be constant (const or a literal)!
                     //filled with whatever is already at that spot in memory
                     //"name" is a constant memory address of the 1st element
 
 
 
-type name[] = {1,2,3,4};    //or, fill with values when creating array
+int name[] = {1,2,3,4};    //or, fill with values when creating array
                             //this array will be size 4
 
 
@@ -54,6 +54,8 @@ nums = vals;        //<-- can we do this?
 arrays as *optional*. Some current compilers support them, and 
 some do not.
 
+
+** Variable length arrays are not supported by C++ compilers.
 
 --> please use constant sized arrays in this class
 
@@ -85,7 +87,7 @@ returnType functionName(type name[], ...) {
 
 What do we probably want to pass also? 
 
-
+the length!
 
 ///////////////////////
 
@@ -94,12 +96,14 @@ sizeof function - returns number of bytes needed for a type or variable
 int nums[5];
 
 sizeof(int)
-    --> equals?
+    --> equals? 4
 
 sizeof(nums)
-    --> equals?
+    --> equals? 20
 
 --> what expression would equal the length of nums?
+
+sizeof(nums)/sizeof(int)
 
 
 ...what if we try to use sizeof to know length of parameter array?
@@ -160,7 +164,7 @@ char str[] = {'h', 'i', '\0'};
 
 
 //can we do?
-temp = str;     
+temp = str;     //NO! temp is a constant pointer, can't change
 
 
 //can we do?
@@ -173,6 +177,14 @@ Example: write a function to return how many times a letter appears
 in a word
 
 
+int count_letter(char word[], char letter) {
+    int count = 0;
+    for (int i = 0; word[i] != '\0'; i++) {
+        if (word[i] == letter) count++;
+    }
+
+    return count;
+}
 
 
 
@@ -186,7 +198,7 @@ strlen - takes string as a parameter, returns its length;
 char test[] = "apple";
 int len = strlen(test);     
 
-    --> len will be?
+    --> len will be? 5
 
 
 ////////////////////////
@@ -201,7 +213,7 @@ printf("The word is: %s\n", test);
 --> What will print?
 
 
-
+The word is apple
 
 ////////////////////////
 
@@ -225,6 +237,8 @@ char buff[10];
 printf("Enter a word: ");
 fgets(buff, 10, stdin);
 
+Enter a word: apple
+
 
 Stops reading when one of:
 - has reached a newline (it WILL store the newline)
@@ -247,6 +261,7 @@ fgets(name, 10, stdin);
 
 
 //strcspn returns #characters in 1st param before reaching any in 2nd param
+
 name[strcspn(name, "\n")] = '\0';
 
 
@@ -276,23 +291,37 @@ Project 1 - brief discussion
 
 Lab 2
 
+word: elephant
+length: 5
+
+eleph
+lepha
+ephan
+phant
+
+
 write a substring function
 parameters: starting index, length, original string, place to put substring
 
 
-void substring(int start, int subLen, char orig[], char sub[])
+void substring(int start, int subLen, char orig[], char sub[]);
 
 
 example: 3 (start), 5 (subLen), "elephant" (orig), (sub is empty buffer)
 
 --> what should function do?
 
+sub: phant
+
 
 --> what should our last character in sub be?
+
+put a \0 after everything you copied
 
 
 --> what do we need to do before calling substring in main?
 
+char buff[100];
 
 --> main should loop, call substring for each possible value of start
 
@@ -300,3 +329,12 @@ elephant, substring length 5.
     --> what should the first start value be?
     --> what should the last start value be?
 
+elephant - length 8
+
+substring length 5:
+eleph
+lepha
+ephan
+phant
+
+possible starts: 0 to (length of overall string - substring length)

@@ -2,7 +2,7 @@
 
 int sum_array(int arr[]) {
     int sum = 0;
-    for (int i = 0; i < sizeof(arr); i++) {
+    for (int i = 0; i < sizeof(arr)/sizeof(int); i++) {
         sum = sum + arr[i];
     }
 
