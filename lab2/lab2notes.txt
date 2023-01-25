@@ -87,7 +87,7 @@ returnType functionName(type name[], ...) {
 
 What do we probably want to pass also? 
 
-the length!
+
 
 ///////////////////////
 
@@ -96,14 +96,14 @@ sizeof function - returns number of bytes needed for a type or variable
 int nums[5];
 
 sizeof(int)
-    --> equals? 4
+    --> equals? 
 
 sizeof(nums)
-    --> equals? 20
+    --> equals? 
 
 --> what expression would equal the length of nums?
 
-sizeof(nums)/sizeof(int)
+
 
 
 ...what if we try to use sizeof to know length of parameter array?
@@ -164,7 +164,7 @@ char str[] = {'h', 'i', '\0'};
 
 
 //can we do?
-temp = str;     //NO! temp is a constant pointer, can't change
+temp = str;     
 
 
 //can we do?
@@ -177,14 +177,6 @@ Example: write a function to return how many times a letter appears
 in a word
 
 
-int count_letter(char word[], char letter) {
-    int count = 0;
-    for (int i = 0; word[i] != '\0'; i++) {
-        if (word[i] == letter) count++;
-    }
-
-    return count;
-}
 
 
 
@@ -198,7 +190,7 @@ strlen - takes string as a parameter, returns its length;
 char test[] = "apple";
 int len = strlen(test);     
 
-    --> len will be? 5
+    --> len will be? 
 
 
 ////////////////////////
@@ -213,7 +205,7 @@ printf("The word is: %s\n", test);
 --> What will print?
 
 
-The word is apple
+
 
 ////////////////////////
 
@@ -238,6 +230,8 @@ printf("Enter a word: ");
 fgets(buff, 10, stdin);
 
 Enter a word: apple
+
+
 
 
 Stops reading when one of:
@@ -309,32 +303,22 @@ void substring(int start, int subLen, char orig[], char sub[]);
 
 example: 3 (start), 5 (subLen), "elephant" (orig), (sub is empty buffer)
 
---> what should function do?
+--> what should function do? Draw on board.
 
-sub: phant
+
 
 
 --> what should our last character in sub be?
 
-put a \0 after everything you copied
+
 
 
 --> what do we need to do before calling substring in main?
 
-char buff[100];
+
 
 --> main should loop, call substring for each possible value of start
 
 elephant, substring length 5.
     --> what should the first start value be?
     --> what should the last start value be?
-
-elephant - length 8
-
-substring length 5:
-eleph
-lepha
-ephan
-phant
-
-possible starts: 0 to (length of overall string - substring length)
