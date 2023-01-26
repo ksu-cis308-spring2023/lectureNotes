@@ -85,7 +85,7 @@ returnType functionName(type name[], ...) {
 
 }
 
-What do we probably want to pass also? 
+What do we probably want to pass also? the length
 
 
 
@@ -96,12 +96,14 @@ sizeof function - returns number of bytes needed for a type or variable
 int nums[5];
 
 sizeof(int)
-    --> equals? 
+    --> equals? 4
 
 sizeof(nums)
-    --> equals? 
+    --> equals? 20
 
 --> what expression would equal the length of nums?
+
+sizeof(nums)/sizeof(int)
 
 
 
@@ -121,6 +123,8 @@ int[] get_array() {
 }
 
 --> this is not allowed! (why not?)
+
+it won't exist anymore
 
 
 ///////////////////////
@@ -164,7 +168,7 @@ char str[] = {'h', 'i', '\0'};
 
 
 //can we do?
-temp = str;     
+temp = str;     NO!
 
 
 //can we do?
@@ -177,6 +181,14 @@ Example: write a function to return how many times a letter appears
 in a word
 
 
+int count_letter(char word[], char letter) {
+    int count = 0;
+    for (int i = 0; word[i] != '\0'; i++) {
+        if (word[i] == letter) count++;
+    }
+
+    return count;
+}
 
 
 
@@ -188,7 +200,7 @@ in a word
 strlen - takes string as a parameter, returns its length;
 
 char test[] = "apple";
-int len = strlen(test);     
+int len = strlen(test);     //5
 
     --> len will be? 
 
@@ -204,7 +216,7 @@ printf("The word is: %s\n", test);
 
 --> What will print?
 
-
+The word is: apple
 
 
 ////////////////////////
@@ -213,12 +225,12 @@ string input
 
 char buff[10];
 printf("Enter a word: ");
-scanf("%s", buff);          //why no &?
+scanf("%s", buff);          //why no &? buff IS a memory location
 
 
 --> what is dangerous about this approach?
 
-
+could overwrite later memory or insert machine code
 
 
 ///////////////////////
@@ -269,12 +281,13 @@ unless otherwise stored as/cast to an int, C will try to do operations
     as unsigned if another unsigned value is involved
 
 char test[] = {'\0'}';   //test is an empty string
-if (strlen(test) - 10 >= 0) {
-    printf("yes\n");
+int size = strlen(test);
+if (size - 10 >= 0) {
+    printf("length at least 10\n");
 }
 
 
-What happens here?
+What happens here? 
 
 
 /////////////////////////////
@@ -310,15 +323,15 @@ example: 3 (start), 5 (subLen), "elephant" (orig), (sub is empty buffer)
 
 --> what should our last character in sub be?
 
-
+\0
 
 
 --> what do we need to do before calling substring in main?
 
-
+create a char array to hold the substring
 
 --> main should loop, call substring for each possible value of start
 
 elephant, substring length 5.
-    --> what should the first start value be?
-    --> what should the last start value be?
+    --> what should the first start value be? 0
+    --> what should the last start value be? strlen - substring length
