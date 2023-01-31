@@ -12,7 +12,8 @@ The cheetah is the fastest land mammal. They run 60 mph.
 The blue whale is the biggest mammal. They weigh up to 200 tons.
 
 Redacted text:
-
+The cheetah *** the fastest land ***. They run 60 mph.
+The blue whale *** the biggest ***. They weigh up *** 200 tons.
 
 
 ////////////////////////////
@@ -46,7 +47,10 @@ Suppose we run program like:
 
 What is argc? What is argv[0]? What is argv[1]?
 
-
+argc: 3
+argv[0]: "a.exe"
+argv[1]: "one"
+argv[2]: "two"
 
 
 
@@ -121,13 +125,15 @@ Copying strings.
 
 1) First attempt:
 
+In C# we do:
     string s1 = "hi";
     string s2 = s1;
 
+Can we do this in C?
     char s1[] = "hi";
-    char s2[] = s1; //Is this OK?
+    char s2[] = s1; 
 
-
+no - arrays are constant memory addresses
 
 2) Second attempt:
 
@@ -148,12 +154,19 @@ char dest[20];
 --> make dest have the characters from test
 
 
-
+strcpy(dest, test);
 
 
 
 --> copy "again" into dest
 
+strcpy(dest, "again");
+
+--> can we copy into test?
+
+strcpy(test, "ball");
+
+will write past end of array
 
 
 
@@ -177,14 +190,9 @@ char buff[10] = "ah";   //what characters?
 --> concatenate test onto buff
 	(what do both strings look like now?)
 
+strcat(buff, test);
 
 
---> concatenate test onto buff again
-
-
-
-
---> can we strcat onto test? 
 
 
 
@@ -194,7 +202,8 @@ char buff[10] = "ah";   //what characters?
 
 Can we concatenate onto empty?
 
-
+empty[0] = '\0';
+strcat(empty, "blah");
 
 
 
@@ -321,3 +330,13 @@ fclose(conn_name);
 Lab 3 - convert a file of dates to a different format
 
 12/31/1999 to December 31, 1999
+
+creating ONE string for the current output line
+
+char line[100];
+
+put all stuff in line
+use strcpy and strcat
+
+
+print line ONCE to output file
