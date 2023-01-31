@@ -22,6 +22,7 @@ Project 1 running instructions:
 type input.txt | ./a.exe word1 word2 ... wordN > output.txt
 
 
+
 Input and output is with CONSOLE, not a file
     - use fgets with stdin for input
         ...but it will come from input.txt
@@ -30,9 +31,13 @@ Input and output is with CONSOLE, not a file
         ...but it will go to output.txt
 
 
+///////////////////////////////
+
 Command-line arguments:
 
 int main(int argc, char* argv[])
+
+
 
 
 Suppose we run program like:
@@ -40,6 +45,10 @@ Suppose we run program like:
 ./a.exe one two
 
 What is argc? What is argv[0]? What is argv[1]?
+
+
+
+
 
 //////////////////////////
 
@@ -50,19 +59,28 @@ type orig.txt | ./a.exe start end > result.txt
 
 If orig.txt is:
 
-This is a test.
-Another line here.
+    This is a test.
+    Another line here.
 
-start = hello
-end = bye
+And we have that:
+
+    start = hello
+    end = bye
+
 
 Then result.txt should be:
 
-hello This is a test. bye
-hello Another line here. bye
+    hello This is a test. bye
+    hello Another line here. bye
 
+
+--> What does this loop do?
 
 while (fgets(buff, size, stdin) != NULL)
+
+
+
+
 
 //////////////////////////////
 
@@ -78,6 +96,7 @@ sprintf(str, "%d", age);
 
 
 
+
 --> can store other values in a string that way
 
 
@@ -88,46 +107,32 @@ more string functions - #include <string.h>
 - I won't mention all string functions here
 - make sure you read textbook chapter on strings if you haven't already
 
-//////////////////////////////
-
-char[] strcat(char str1[], char str2[]);
-
-Copies characters in str2 onto the end of str1.
-Returns the newly concatenated string 
-(although str1 also references the concatenated string).
-
-
-
-For example:
-
-char test[] = "hi"; //h, i, \0
-char buff[10];
-
---> strcat test onto buff
-	(what do both strings look like now?)
-
-
-
---> strcat test onto buff again
 
 
 
 
---> can we strcat onto test? 
 
 
 
 
 ////////////////////////////
 
+Copying strings.
 
-string s1 = "hi";
-string s2 = s1;
+1) First attempt:
 
-char s1[] = "hi";
-char s2[] = s1; //Is this OK?
+    string s1 = "hi";
+    string s2 = s1;
 
-char[] strcpy(char str1[], char str2[]);
+    char s1[] = "hi";
+    char s2[] = s1; //Is this OK?
+
+
+
+2) Second attempt:
+
+    char[] strcpy(char str1[], char str2[]);
+
 This function copies the characters in str2 into str1, 
 overwriting anything that was already in str1. 
 It returns the newly copied string (str1 also references the copied string).
@@ -142,7 +147,7 @@ char dest[20];
 
 --> make dest have the characters from test
 
-strcpy(dest, test);
+
 
 
 
@@ -151,7 +156,43 @@ strcpy(dest, test);
 
 
 
---> now add a "b" onto the end of dest
+
+//////////////////////////////
+
+char[] strcat(char str1[], char str2[]);
+
+Copies characters in str2 onto the end of str1.
+Returns the newly concatenated string 
+(although str1 also references the concatenated string).
+
+
+
+For example:
+
+char test[] = "hi";     //what characters?
+char buff[10] = "ah";   //what characters?
+
+
+
+--> concatenate test onto buff
+	(what do both strings look like now?)
+
+
+
+--> concatenate test onto buff again
+
+
+
+
+--> can we strcat onto test? 
+
+
+
+--> what if we have:
+
+    char empty[10];
+
+Can we concatenate onto empty?
 
 
 
@@ -163,8 +204,10 @@ char* strtok(char str[], char delim[]);
 
 - Returns the first token found in str before the occurrence 
     of any character in delim. 
+
 - After the first call to strtok, pass NULL as str
     to tell it to continue looking for tokens in the original string.
+
 - If there are multiple delimeters in a row, it will skip all of them
     (like Java StringTokenizer)
 
@@ -203,11 +246,15 @@ File I/O
 
 1) Connect to the file
 
-FILE *conn_name = fopen(filename, mode);
+FILE* conn_name = fopen(filename, mode);
 
 - filename is a string (looks in same dir as .c file without abs. path)
+
 - mode is "r" or "w" (plus other options - see text)
+
 - returns NULL if file can't be opened
+
+
 
 
 
@@ -219,8 +266,13 @@ FILE *conn_name = fopen(filename, mode);
 fgets(buff, size, conn_name)
 
 --> just like fgets from stdin (reads one line at a time)
+
 --> returns NULL if reaches end of input
+
 --> stores the \n
+
+
+
 
 char buff[30];
 while (fgets(buff, size, conn_name) != NULL) {
@@ -228,7 +280,11 @@ while (fgets(buff, size, conn_name) != NULL) {
 }
 
 
+
 -OR-
+
+
+
 
 fscanf(conn_name, "what to read", variable addresses);
 
@@ -236,12 +292,20 @@ fscanf(conn_name, "what to read", variable addresses);
 --> returns the number of variables correctly read (0 if none)
 --> returns EOF if at end of file
 
+
+
+
 /////////////////////////////////
 
 
 3) Write to the file (just like printf)
 
-fprintf(FILE* fp, char str[], variables to print...)
+fprintf(FILE* conn_name, char str[], variables to print...)
+
+
+
+
+
 
 
 ////////////////////////////////////
