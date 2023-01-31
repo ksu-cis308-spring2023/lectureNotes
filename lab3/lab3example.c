@@ -6,7 +6,7 @@ int main(int argc, char* argv[]) {
 
     while (fgets(buffer, 100, stdin) != NULL) {
         //buffer is the current line from the file
-        buffer[strcspn(buffer, "\n")] = '\0';
+        buffer[strcspn(buffer, "\r\n")] = '\0';
         printf("%s %s %s\n", argv[1], buffer, argv[2]);
     }
 
