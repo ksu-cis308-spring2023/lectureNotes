@@ -2,13 +2,9 @@
 #include <string.h>
 
 int main(int argc, char* argv[]) {
-    char buffer[100];
+    //read each line with fgets
 
-    while (fgets(buffer, 100, stdin) != NULL) {
-        //buffer is the current line from the file
-        buffer[strcspn(buffer, "\r\n")] = '\0';
-        printf("%s %s %s\n", argv[1], buffer, argv[2]);
-    }
+    //print the 1st arg, then current line, then 2nd arg
 
     return 0;
 }

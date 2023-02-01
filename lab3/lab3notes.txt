@@ -12,8 +12,8 @@ The cheetah is the fastest land mammal. They run 60 mph.
 The blue whale is the biggest mammal. They weigh up to 200 tons.
 
 Redacted text:
-The cheetah *** the fastest land ***. They run 60 mph.
-The blue whale *** the biggest ***. They weigh up *** 200 tons.
+
+
 
 
 ////////////////////////////
@@ -47,10 +47,7 @@ Suppose we run program like:
 
 What is argc? What is argv[0]? What is argv[1]?
 
-argc: 3
-argv[0]: "a.exe"
-argv[1]: "one"
-argv[2]: "two"
+
 
 
 
@@ -133,7 +130,7 @@ Can we do this in C?
     char s1[] = "hi";
     char s2[] = s1; 
 
-no - arrays are constant memory addresses
+
 
 2) Second attempt:
 
@@ -151,22 +148,20 @@ char test[] = "hi";
 char dest[20];
 
 
---> make dest have the characters from test
+--> copy test into dest
 
 
-strcpy(dest, test);
+
 
 
 
 --> copy "again" into dest
 
-strcpy(dest, "again");
+
 
 --> can we copy into test?
 
-strcpy(test, "ball");
 
-will write past end of array
 
 
 
@@ -190,7 +185,7 @@ char buff[10] = "ah";   //what characters?
 --> concatenate test onto buff
 	(what do both strings look like now?)
 
-strcat(buff, test);
+
 
 
 
@@ -202,8 +197,7 @@ strcat(buff, test);
 
 Can we concatenate onto empty?
 
-empty[0] = '\0';
-strcat(empty, "blah");
+
 
 
 
@@ -333,10 +327,16 @@ Lab 3 - convert a file of dates to a different format
 
 creating ONE string for the current output line
 
-char line[100];
+char line[100];     //this will hold the correct output for the line
 
-put all stuff in line
-use strcpy and strcat
+use strcpy and strcat to put each piece into line
 
 
-print line ONCE to output file
+to get day (same for year):
+    char day[10];
+    sprintf(day, "%d", value of the day as an int);
+
+--> now you can strcat day onto line
+
+
+print line ONCE (per line in the file) to output file
