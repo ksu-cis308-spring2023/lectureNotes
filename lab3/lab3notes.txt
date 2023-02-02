@@ -4,6 +4,7 @@ Project 1 due Wednesday, February 9
 
 redaction idea
 
+
 word list: the mammal is to
 
 
@@ -12,7 +13,8 @@ The cheetah is the fastest land mammal. They run 60 mph.
 The blue whale is the biggest mammal. They weigh up to 200 tons.
 
 Redacted text:
-
+The cheetah *** ** fastest land ***. They run 60 mph.
+The blue whale *** *** biggest ***. They weigh up *** 200 tons.
 
 
 
@@ -47,43 +49,14 @@ Suppose we run program like:
 
 What is argc? What is argv[0]? What is argv[1]?
 
+argc is 3
+argv[0] is "a.exe"
+argv[1] is "one"
+argv[2] is "two"
 
 
 
-
-//////////////////////////
-
-Write program that runs like:
-
-type orig.txt | ./a.exe start end > result.txt
-
-
-If orig.txt is:
-
-    This is a test.
-    Another line here.
-
-And we have that:
-
-    start = hello
-    end = bye
-
-
-Then result.txt should be:
-
-    hello This is a test. bye
-    hello Another line here. bye
-
-
---> What does this loop do?
-
-while (fgets(buff, size, stdin) != NULL)
-
-
-
-
-
-//////////////////////////////
+////////////////
 
 conversion to string (more in the textbook)
 
@@ -93,7 +66,7 @@ int age = 10;
 char str[20];
 sprintf(str, "%d", age);
 
---> what is in str?
+--> what is in str? {'1', '0', '\0'}
 
 
 
@@ -130,6 +103,8 @@ Can we do this in C?
     char s1[] = "hi";
     char s2[] = s1; 
 
+NO! arrays are constant references. We can't make them reference
+something else.
 
 
 2) Second attempt:
@@ -150,17 +125,16 @@ char dest[20];
 
 --> copy test into dest
 
+strcpy(dest, test);
+strcpy(dest, "foo"); <-- will overwrite what was there
 
 
-
-
-
---> copy "again" into dest
 
 
 
 --> can we copy into test?
 
+strcpy(test, "ball"); <-- will write past end of array
 
 
 
@@ -185,7 +159,7 @@ char buff[10] = "ah";   //what characters?
 --> concatenate test onto buff
 	(what do both strings look like now?)
 
-
+strcat(buff, test);
 
 
 
@@ -197,7 +171,8 @@ char buff[10] = "ah";   //what characters?
 
 Can we concatenate onto empty?
 
-
+empty[0] = '\0';
+strcat(empty, "ball");
 
 
 
@@ -222,15 +197,15 @@ char buff[200];
 char *token;    //a char pointer - more later
 
 printf("Enter names, separated by commas: ");
-fgets(buff, 200, stdin);    //"Fred,James,Jane,Lynn"
+fgets(buff, 200, stdin);    //"Fred, James, Jane, Lynn"
 
 buff[strcspn(buff, "\n")] = '\0';
 
-token = strtok(buff, ",");
+token = strtok(buff, ", ");
 while (token != NULL) 
 {
 	printf("%s\n", token);
-	token = strtok(NULL, ",");
+	token = strtok(NULL, ", ");
 }
 
 
@@ -273,7 +248,6 @@ fgets(buff, size, conn_name)
 --> returns NULL if reaches end of input
 
 --> stores the \n
-
 
 
 
