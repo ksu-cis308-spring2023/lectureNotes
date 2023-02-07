@@ -29,7 +29,7 @@ int x = 4;
 
 How do we get the memory address of x?
 
-
+int* ptr = &x;
 
 
 /////////////////////////
@@ -38,7 +38,7 @@ Initializing a pointer:
 
 
 int x = 4;
-int* numPtr = &x;
+int* numPtr = x;
 
 
 
@@ -57,11 +57,18 @@ Goes to the memory location held by the pointer.
 
 
 int x = 4;
-int* numPtr = &x;
+int* ptr = &x;
 
 
-*numPtr = 5;
-(*numPtr)++;
+*ptr = 5;
+(*ptr)++;
+
+int* numPtr = x;
+*numPtr = 10;
+
+
+
+
 
 
 /////////////////////////
@@ -70,17 +77,17 @@ Pointer arithmetic
 
 
 int x = 4;
-int* numPtr = &x;
+int* ptr = &x;
 
 
 
 //What does each line do?
 
-numPtr++;
+ptr++;
 
-numPtr-=5;
+ptr-=5;
 
-numPtr = &x - 1;
+ptr = &x - 1;
 
 
 
@@ -111,7 +118,8 @@ What is nums?
 
 
 int* arrPtr = &nums[0];     //what does this do?
-//equivalent?
+
+(or = nums)
 
 
 arrPtr = &nums;              //this?
@@ -119,16 +127,18 @@ arrPtr = &nums;              //this?
 
 arrPtr = &nums[1];          //this?
 
+(or = nums + 1)
+
 
 arrPtr = nums + 4;          //this?
-//equivalent? 
+
 
 
 *arrPtr = 7;                //this?
 
 
 *(nums + 2) = 10;           //this?
-//equivalent? 
+//equivalent?  nums[2] = 10
 
 
 arrPtr++;                   //this?
@@ -136,6 +146,8 @@ arrPtr++;                   //this?
 
 nums++;                     //this?
     
+
+NO! won't compile. nums is a constant ptr.
 
 /////////////////////////
 
