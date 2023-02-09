@@ -47,6 +47,8 @@ int* ptr = &x;
 --> what if we leave off the "&"?
 
 
+int x = 4;
+int* numPtr = x;
 
 
 
@@ -125,14 +127,14 @@ What is nums?
 
 int* arrPtr = &nums[0];     //what does this do?
 
-
+(or int* arrPtr = nums;)
 
 
 arrPtr = &nums;              //this?
 
 
 arrPtr = &nums[1];          //this?
-
+(or arrPtr = nums+1;)
 
 
 
@@ -144,14 +146,14 @@ arrPtr = nums + 4;          //this?
 
 
 *(nums + 2) = 10;           //this?
-
+(or nums[2] = 10;)
 
 
 arrPtr++;                   //this?
 
 
 nums++;                     //this?
-    
+    //NO! nums is a constant pointer
 
 
 

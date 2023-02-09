@@ -1,19 +1,20 @@
 #include <stdio.h>
 
-void swap(in*, int);
+void swap(int*, int*);
 
 void print_array(int*, int);
 
 int main() {
     int x = 4;
     int y = 3;
-    swap(x, y);
+    swap(&x, &y);
 
     printf("x = %d, y = %d\n", x, y);
 
     int nums[] = {1,2,3,4,5,6,7,8,9,10};
 
     //call swap to swap the 2 and the 4
+    swap(nums+1, nums+3);
 
 
     //call print_array
@@ -23,13 +24,15 @@ int main() {
 }
 
 //will this work?
-void swap(int a, int b) {
-	int temp = a;
-	a = b;
-	b = temp;
+void swap(int* a, int* b) {
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 void print_array(int* nums, int len) {
     //print array values using pointer notation
-
+    for (int* cur = nums; cur < nums+len; cur++) {
+        printf("%d ", *cur);
+    }
 }
