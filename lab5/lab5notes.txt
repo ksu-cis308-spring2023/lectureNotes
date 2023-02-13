@@ -1,0 +1,175 @@
+Project 2 posted, due Wed. March 8
+
+
+/////////////////////
+
+Today:
+
+- more with pointers
+- pointers to pointers
+- dynamic memory allocation
+
+/////////////////////
+
+Pointers to pointers - holds the memory address of another pointer
+
+What does a pointer hold? the memory address of some other type
+
+
+ptr to a ptr to an int
+
+int** ptr
+
+
+What would a pointer to a pointer hold?
+
+
+//Example
+
+int x; 		
+
+int* xp; 	
+
+int** xpp; 	
+
+x = 36; 	
+
+//Make xp "point to" x
+
+
+
+
+//Make xpp "point to" xp
+
+
+
+//Use xp to change x to 72
+
+
+
+//Use xpp to change x to 24
+
+
+
+/////////////////////////
+
+All memory so far has been allocated on the STACK.
+
+Happens automatically when function is called.
+
+Deallocation is done automatically when function ends.
+
+Must be a constant size
+
+
+To allocate memory whose size might change, or that we don't
+know if we want until the program is running...allocate dynamically
+(on the HEAP).
+
+- malloc, calloc, realloc, free
+- not allocated contiguously
+- we must release this memory
+
+//////////////////////
+
+malloc - void* malloc(int numBytes)
+
+use sizeof(type) to get the number of bytes needed for a type
+
+store the result in type of pointer you want
+    - some compilers require an explicit cast, but most do not
+    - I tend to use an explicit cast for clarity
+
+
+Example: dynamically allocate a size-10 array of ints
+
+
+
+
+//////////////////////
+
+free - void free(void* ptr)
+
+releases the memory allocated at ptr so it can be used again
+
+--> most implementations of malloc allocate a special spot
+    to store the size of the allocated block, so it knows how
+    much to free. This can be right before the allocated memory,
+    but is compiler specific
+
+
+Example: free array from before
+
+
+
+--> what if we increment pointer?
+
+
+--> can we free a constant-sized array?
+
+
+
+//////////////////////////
+
+calloc - void* calloc(int numElems, int sizePerElem);
+
+Same idea as malloc, but inits to default value for the type
+
+Need to free when done
+
+
+
+
+//size 20 array of doubles initialized to 0
+
+
+
+
+
+
+
+/////////////////////////
+
+realloc - void* realloc(void* origPtr, int newSize);
+
+- used to allocate more space for any existing pointer
+- returns one of:
+    - NULL (if not enough new space is found)
+    - The original pointer (if there is enough space at that location)
+    - A new pointer to a different spot in memory (releases old memory)
+
+
+
+
+int* temp = realloc(arr, 20*sizeof(int));
+if (temp != NULL) {
+    arr = temp;
+}
+
+
+/////////////////////
+
+How would we dynamically allocate space for a 3x4 array of ints?
+
+int** grid = malloc(3*sizeof(int*));
+
+
+
+
+
+How would we free the memory?
+
+
+
+
+
+
+
+
+/////////////////////
+
+Lab 5
+
+Merge function
+
+Idea
