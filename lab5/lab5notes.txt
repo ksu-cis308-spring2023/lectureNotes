@@ -1,5 +1,27 @@
 Project 2 posted, due Wed. March 8
 
+Sets and set operations
+
+
+(1,1,2,2,4) - not a set. Sets don't have duplicates
+
+To turn into a set: (1,2,4)
+
+Set union (all elements that appear in at least one set): 
+
+    (1,2,4)
+    (1,3,4,7)
+    Union: (1,4,7,3,2)
+
+Set intersection (all elements that appear in both sets)
+    (1,2,4)
+    (1,3,4,7)
+    Intersection: (1,4)
+
+Set difference A - B
+    A: (1,2,4)
+    B: (1,3,4,7)
+    A - B: (2)
 
 /////////////////////
 
@@ -11,17 +33,20 @@ Today:
 
 /////////////////////
 
-Pointers to pointers - holds the memory address of another pointer
-
-What does a pointer hold? the memory address of some other type
+Pointers to pointers 
 
 
-ptr to a ptr to an int
-
-int** ptr
+What does a pointer hold? a memory address
 
 
-What would a pointer to a pointer hold?
+What would a pointer to a pointer hold? a memory address of another
+    pointer
+
+
+
+--> what if we wanted a pointer to a pointer to an int?
+
+
 
 
 //Example
@@ -36,6 +61,7 @@ x = 36;
 
 //Make xp "point to" x
 
+xp = &x;
 
 
 
@@ -43,13 +69,20 @@ x = 36;
 
 
 
+xpp = &xp;
+
+//xpp = &x; <-- would get compiler warning
+
+
 //Use xp to change x to 72
+
+*xp = 72;
 
 
 
 //Use xpp to change x to 24
 
-
+**xpp = 24;
 
 /////////////////////////
 
@@ -62,6 +95,9 @@ Deallocation is done automatically when function ends.
 Must be a constant size
 
 
+
+
+
 To allocate memory whose size might change, or that we don't
 know if we want until the program is running...allocate dynamically
 (on the HEAP).
@@ -70,9 +106,14 @@ know if we want until the program is running...allocate dynamically
 - not allocated contiguously
 - we must release this memory
 
+
+
+
+
 //////////////////////
 
 malloc - void* malloc(int numBytes)
+
 
 use sizeof(type) to get the number of bytes needed for a type
 
@@ -81,7 +122,23 @@ store the result in type of pointer you want
     - I tend to use an explicit cast for clarity
 
 
-Example: dynamically allocate a size-10 array of ints
+
+
+Example: ask user for a size.
+    Dynamically allocate an int array of that size
+
+
+int size;
+printf("Enter a size: ");
+scanf("%d", &size);
+
+int* arr = malloc(size*sizeof(int));
+
+*arr = 17;
+*(arr + 2) = 10;
+arr[1] = 28;
+
+arr++;  //allowed, but bad idea
 
 
 
@@ -89,6 +146,7 @@ Example: dynamically allocate a size-10 array of ints
 //////////////////////
 
 free - void free(void* ptr)
+
 
 releases the memory allocated at ptr so it can be used again
 
@@ -101,11 +159,24 @@ releases the memory allocated at ptr so it can be used again
 Example: free array from before
 
 
+free(arr);
+
+
 
 --> what if we increment pointer?
 
+arr++;
+free(arr);
+
+would not free first element, potentially have trouble freeing it all
+
 
 --> can we free a constant-sized array?
+
+
+int nums[10];
+free(nums); //no! nums is on the stack
+
 
 
 
@@ -121,6 +192,8 @@ Need to free when done
 
 
 //size 20 array of doubles initialized to 0
+
+double* list = calloc(20, sizeof(double));
 
 
 
@@ -140,6 +213,7 @@ realloc - void* realloc(void* origPtr, int newSize);
 
 
 
+What happens if we do:
 
 int* temp = realloc(arr, 20*sizeof(int));
 if (temp != NULL) {
@@ -147,20 +221,31 @@ if (temp != NULL) {
 }
 
 
+
+
 /////////////////////
 
 How would we dynamically allocate space for a 3x4 array of ints?
 
-int** grid = malloc(3*sizeof(int*));
+int** nums = malloc(3*sizeof(int*));
+for (int i = 0; i < 4; i++) {
+    nums[i] = malloc(4*sizeof(int));
+}
 
-
+*(*(nums+1)+1) = 3;
+nums[1][1] = 3;
 
 
 
 How would we free the memory?
 
+for (int i = 0; i< 4; i++) {
+    free(nums[i]);
+}
+free(nums);
 
-
+a call to free for each call to malloc
+in reverse order
 
 
 
@@ -172,4 +257,17 @@ Lab 5
 
 Merge function
 
-Idea
+void merge(int* nums, int len1, int len2)
+
+
+    - nums is an array with 2 sections
+    - first len1 elements are sorted
+    - next len2 elements are sorted
+
+--> update nums to merge the two together
+
+--> what do we need to do temporarily before changing nums?
+
+ptr1: points to current element in first section
+ptr2: points to current element in second section
+copyPtr: points to current element in temp array
