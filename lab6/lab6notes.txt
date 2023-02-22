@@ -6,23 +6,11 @@ Project 2 due Wed March 8
 9 9
 1 3 5
 
-step 1: read in the size on the first line (size)
 
-int** sets = malloc(size*sizeof(int*));
+How to store?
 
-i = 0
-loop with fgets (while fgets...). line holds current row.
-    use strtok on line, use " \n\r" as delimeters
-        count the pieces
 
-    sets[i] = malloc(count*sizeof(int));
-
-    now use strtok again on line, same delims
-        sets[i][j] = atoi(token)
-
-    i++
-
-Exam 1 is next week (Tues Feb 28)
+Exam 1 is next week (Thurs March 2)
 
 ///////////////////////////////
 
@@ -90,18 +78,19 @@ int nums[8];
 
 1) Make int pointer called "ptr" hold the address of the 2nd element in nums
 
-int* ptr = nums + 1; //&nums[1]
+
+
 
 2) Use ptr to change the 3rd element in nums to be 11
 
-*(ptr+1) = 11;  //ptr[1] = 11;
+
 
 
 
 3) What do these do:
 
 *nums = 7;
-nums++;     //no! nums is a constant pointer
+nums++;     
 
 
 4) Can we do:
@@ -109,21 +98,22 @@ nums++;     //no! nums is a constant pointer
 ptr[2] = 3; 
 
 
+
 5) Make ptr point to val:
 
 int val = 7;
 
-ptr = &val;
+
+
 
 6) Use ptr to change val to 10
 
-*ptr = 10;
+
 
 
 7) Using only pointer notation, put the contents of val (10)
 in the last spot of nums
 
-*(nums+7) = * ptr;
 
 
 8) What would this do:
@@ -140,16 +130,6 @@ Replace every instance of the first character with the second character
 (without strlen, use pointer notation)
 
 
-void replace(char* str, char one, char two) {
-    char* temp = str;
-
-    while (*temp != '\0') {
-        if (*temp == one) {
-            *temp = two;
-        }
-        temp++;
-    }
-}
 
 
 
@@ -165,10 +145,8 @@ calls your function to replace each 'a' with a '*', and prints the result
 
 Dynamically allocate a 5x6 array of ints
 
-int** grid = malloc(5*sizeof(int*));
-for (int i = 0; i < 5; i++) {
-    grid[i] = malloc(6*sizeof(int));
-}
+
+
 
 
 Assume the array has been filled. Ask the user for a row
@@ -176,20 +154,14 @@ number. Use pointer notation to print the elements in that row.
 
 row is our row number
 
-int* temp = *(grid+row);
-while (temp < *(grid+row) + 6) {
-    printf("%d\n", *temp);
-    temp++;
-}
+
+
 
 
 
 Free the memory.
 
-for (int i = 0; i < 5; i++) {
-    free(grid[i]);
-}
-free(grid);
+
 
 
 /////////////////////
