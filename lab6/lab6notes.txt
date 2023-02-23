@@ -9,6 +9,17 @@ Project 2 due Wed March 8
 
 How to store?
 
+read in the number of sets (size)
+
+int** grid = malloc(size * sizeof(int*));   //allocate array of pointers
+loop, using fgets to read in the next line
+    use strtok to tokenize the line, " \n\r"
+        count 
+    grid[i] = malloc(count*sizeof(int));
+
+    use strtok again to tokenize
+        grid[i][j] = atoi(token);
+
 
 Exam 1 is next week (Thurs March 2)
 
@@ -78,19 +89,19 @@ int nums[8];
 
 1) Make int pointer called "ptr" hold the address of the 2nd element in nums
 
-
+int* ptr = nums+1; //= &nums[1]
 
 
 2) Use ptr to change the 3rd element in nums to be 11
 
 
-
+*(ptr + 1) = 11;    //or ptr[1] = 11;
 
 
 3) What do these do:
 
 *nums = 7;
-nums++;     
+nums++;         //NO! will not compile
 
 
 4) Can we do:
@@ -103,10 +114,14 @@ ptr[2] = 3;
 
 int val = 7;
 
+ptr = &val;
+
 
 
 
 6) Use ptr to change val to 10
+
+*ptr = 10;
 
 
 
@@ -114,6 +129,7 @@ int val = 7;
 7) Using only pointer notation, put the contents of val (10)
 in the last spot of nums
 
+*(nums+7) = *ptr;
 
 
 8) What would this do:
@@ -129,7 +145,15 @@ Replace every instance of the first character with the second character
 
 (without strlen, use pointer notation)
 
-
+void replace(char* str, char one, char two) {
+    char* temp = str;
+    while (*temp != '\0') {
+        if (*temp == one) {
+            *temp = two;
+        }
+        temp++;
+    }
+}
 
 
 
@@ -145,7 +169,10 @@ calls your function to replace each 'a' with a '*', and prints the result
 
 Dynamically allocate a 5x6 array of ints
 
-
+int** grid = malloc(5*sizeof(int*));
+for(int i = 0; i < 5; i++) {
+    grid[i] = malloc(6*sizeof(int));
+}
 
 
 
@@ -154,12 +181,21 @@ number. Use pointer notation to print the elements in that row.
 
 row is our row number
 
-
+int* temp = *(grid+row);
+while (temp < *(grid+row) + 6) {
+    printf("%d\n", *temp);
+    temp++;
+}
 
 
 
 
 Free the memory.
+
+for (int i = 0 ; i < 5; i++) {
+    free(grid[i]);
+}
+free(grid);
 
 
 
