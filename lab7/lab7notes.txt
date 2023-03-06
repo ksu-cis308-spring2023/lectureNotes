@@ -1,0 +1,105 @@
+Project 2 due Wednesday, March 9
+
+//////////////////////////////////
+
+Exam 1 results
+
+High: 50/50
+Average: 39/50
+
+A (45-50): 14 students
+B (40-44): 17 students
+C (35-39): 13 students
+D (30-34): 12 students
+F (< 30): 7 students
+
+Discuss exam questions.
+
+
+
+//////////////////////////////////
+
+Structs in C - similar idea as structs in C#
+
+contains fields for a new type
+
+struct name {
+    type field1;
+    type field2;
+    ...
+} (optional objList);
+
+
+Example:
+
+struct person {
+    char name[30];
+    int age;
+};
+
+////////////////////
+
+Declaring struct variables:
+
+struct name varName;
+
+
+Example:
+
+struct person p1;
+
+
+What happens?
+- allocated on the STACK
+- space is allocated for each field
+
+
+
+
+Initializing fields:
+
+varName.fieldName
+
+
+
+
+How would we make p1 hold the info: Bob, age 20?
+
+struct person p1;
+
+p1.age = 20;
+strcpy(p1.name, "Bob");
+
+
+(what do we do with the string field?)
+
+///////////////////////////////
+
+Structs and functions
+
+see structs.c - printperson and birthday functions
+
+
+
+--> how could we get name and age as user inputs instead?
+
+///////////////////////
+
+(Constant-sized) arrays of structs
+
+type name[constantSize];
+
+
+struct person people[10];
+
+
+How to set the first person's age to 30?
+
+people[0].age = 30;
+
+(Variable-sized) arrays of structs
+
+
+////////////////////////////
+
+Lab 7 - fractions
