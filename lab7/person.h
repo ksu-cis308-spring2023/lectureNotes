@@ -8,6 +8,6 @@ struct person {
 
 void printperson(struct person p);
 
-struct person birthday(struct person p);
+void birthday(struct person* p);
 
 #endif
