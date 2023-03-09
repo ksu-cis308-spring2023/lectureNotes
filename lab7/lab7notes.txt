@@ -68,7 +68,8 @@ varName.fieldName
 How would we make p1 hold the info: Bob, age 20?
 
 struct person p1;
-
+p1.age = 20;
+strcpy(p1.name, "Bob");
 
 
 
@@ -93,11 +94,13 @@ type name[constantSize];
 
 --> make array with 10 people:
 
+struct person people[10];
+
 
 
 --> how to set the first person's age to 30?
 
-
+people[0].age = 30;
 
 (Variable-sized) arrays of structs
 
@@ -106,3 +109,6 @@ type name[constantSize];
 
 Lab 7 - fractions
 
+1/2 + 4/9
+
+(1*9 + 4*2)/(2*9)

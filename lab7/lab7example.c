@@ -8,6 +8,9 @@ int main() {
     p1.age = 20;
 
     //print p1, make p1 have a birthday, print p1 again
+    printperson(p1);
+    birthday(&p1);
+    printperson(p1);
 
 
     return 0;
