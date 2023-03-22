@@ -26,14 +26,8 @@ Example: linked lists (of ints)
 
 define a struct for a node with integer data:
 
-struct node {
-    int data;
-    struct node* next;
-};
 
-struct node* head = malloc(sizeof(struct node));
-head->data = 1;     //shorthand for(*head).data = 1;   
-head->next = NULL;
+
 
 --> create:
 
@@ -45,15 +39,10 @@ head->next = NULL;
 
     head -> | 1 | -> | 2 | -> NULL
 
-head->next = malloc(sizeof(struct node));
-head->next->data = 2;
-head->next->next = NULL;
 
 
 --> now release the memory
 
-free(head->next);
-free(head);
 
 
 --> complete linked list program
@@ -74,7 +63,4 @@ use the stack to reverse the letters in a word
 
 algorithm?
 
-cake
 
-push all the letters
-pop them all off, they'll come in reverse order

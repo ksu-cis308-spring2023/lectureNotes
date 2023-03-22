@@ -8,7 +8,7 @@ struct node {
     struct node* next;
 };
 
-void add(int elem, struct node** head);
+void add(int elem, struct node* head);
 
 void printlist(struct node* head);
 
