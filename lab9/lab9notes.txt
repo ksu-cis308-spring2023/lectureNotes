@@ -36,9 +36,24 @@ struct node {
 
 --> make types PERSON and NODE with typedef
 
+typedef struct person PERSON;
+PERSON p;
+p.age = 20;
+
+typedef struct node NODE;
 
 
+OR:
 
+typedef struct {
+    char name[50];
+    int age;
+} PERSON;
+
+typedef struct node {
+    int data;
+    struct node* next;
+} NODE;
 
 /////////////////////////////////
 
@@ -234,6 +249,11 @@ void enqueue(WORD* w, NODE** headptr, NODE** tailptr)
 
 How would we enqueue "ball" in main?
 
---> where is the head and tail of the correct queue?
+WORD* w = malloc(sizeof(WORD));
+strcpy(w->str, "ball")
+enqueue(w, &head_length[strlen("ball")], &tail_length[strlen("ball")]);
 
---> what do we need to create with "ball" first?
+To print in sorted order:
+
+loop through all queues (1 to 29)
+    dequeue everything from that queue
