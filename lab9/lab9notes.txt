@@ -201,6 +201,9 @@ Lab 9: sort an input file of words by length, using a queue
 How does a queue work? How would we write enqueue?
 
 
+
+
+
 types.h: defines WORD (a struct to wrap a string) and NODE 
     (a struct with WORD* data)
 
