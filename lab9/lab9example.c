@@ -1,8 +1,4 @@
-#include "types.h"
-#include "stack.h"
-#include "linkedlist.h"
-#include <stdlib.h>
-#include <stdio.h>
+//what do we include?
 
 int main() {
     //push 1-4 on stack, pop and print

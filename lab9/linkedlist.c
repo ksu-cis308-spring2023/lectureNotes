@@ -1,7 +1,4 @@
-#include "linkedlist.h"
-#include "types.h"
-#include <stdlib.h>
-#include <stdio.h>
+//what do we include?
 
 void add(int elem, struct node** head) {
     if (*head == NULL) {

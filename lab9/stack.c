@@ -1,7 +1,4 @@
-#include "types.h"
-#include "stack.h"
-#include <stdlib.h>
-
+//what do we include?
 
 void push(int c, NODE** topPtr) {
     NODE* newnode = malloc(sizeof(NODE));

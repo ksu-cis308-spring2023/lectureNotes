@@ -36,24 +36,11 @@ struct node {
 
 --> make types PERSON and NODE with typedef
 
-typedef struct person PERSON;
-PERSON p;
-p.age = 20;
 
-typedef struct node NODE;
 
 
 OR:
 
-typedef struct {
-    char name[50];
-    int age;
-} PERSON;
-
-typedef struct node {
-    int data;
-    struct node* next;
-} NODE;
 
 /////////////////////////////////
 
@@ -249,11 +236,8 @@ void enqueue(WORD* w, NODE** headptr, NODE** tailptr)
 
 How would we enqueue "ball" in main?
 
-WORD* w = malloc(sizeof(WORD));
-strcpy(w->str, "ball")
-enqueue(w, &head_length[strlen("ball")], &tail_length[strlen("ball")]);
+
+
 
 To print in sorted order:
 
-loop through all queues (1 to 29)
-    dequeue everything from that queue
