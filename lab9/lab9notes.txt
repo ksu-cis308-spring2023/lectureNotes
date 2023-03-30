@@ -36,10 +36,21 @@ struct node {
 
 --> make types PERSON and NODE with typedef
 
-
+typedef struct person PERSON;
+typedef struct node NODE;
 
 
 OR:
+
+typedef struct {
+    char name[50];
+    int age;
+} PERSON;
+
+typedef struct node {
+    int data;
+    struct node* next;
+} NODE;
 
 
 /////////////////////////////////
@@ -235,6 +246,10 @@ void enqueue(WORD* w, NODE** headptr, NODE** tailptr)
 
 
 How would we enqueue "ball" in main?
+
+WORD* newword = malloc(sizeof(WORD));
+strcpy(newword->str, "ball");
+enqueue(newword, &head_length[4], &tail_length[4]);
 
 
 
