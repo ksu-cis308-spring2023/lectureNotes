@@ -2,6 +2,19 @@ Project 3 - due Wed April 5
 
 cases for "add" in sortedset:
 
+1) if the set is empty (if set->head == NULL)
+
+2) if the new item is less than the data in the head
+    then a new node with the new item should be inserted
+    in front (and becomes new head)
+
+3) if the new item is bigger than the data in the tail
+    then a new node with the new item should be inserted
+    in back (and becomes new tail)
+
+4) general case: the new item goes somewhere in the middle
+
+
 //////////////////////////////
 
 User-defined types:
@@ -12,44 +25,6 @@ User-defined types:
 4) union
 
 //////////////////////////////
-
-typedef -- we've done things like:
-
-typedef struct {
-    char name[30];
-    int age;
-} PERSON;
-
-And:
-
-typedef struct node {
-    int data;
-    struct node* next;
-} NODE;
-
-
-/////////////////////////
-
-Can use typedef to rename ANY type.
-
-typedef oldTypeName newTypeName;
-
-
-
-
-Example:
-
-typedef char GRADE;
-
-GRADE g = 'A';
-
-char letter = 'B';
-
-g = letter;
-
-
-
-////////////////////////
 
 Enum - like enum in C#
 
@@ -108,7 +83,7 @@ Can we do?
     typedef enum {red, pink, yellow} APPLE_COLORS;
 
 
-Can't use same enum value (like red) in two different enums
+NO! Can't use same enum value (like red) in two different enums
 
 ///////////////////////
 
@@ -149,6 +124,8 @@ Would need an if/switch to look at value and manually print text
 
 typedef enum {red, green, blue} COLOR;
 COLOR ex = red;
+
+printf("%d\n", ex); //prints 0
 
 //how to print ex?
 //if-statement for all values, print text yourself
@@ -193,6 +170,8 @@ m.dollars = 4.20;
 --> can print m.dollars now as a %lf
 --> m.yen as %d will be corrupted
 
+
+
 If we then do:
 
 m.yen = 17;
@@ -234,6 +213,21 @@ Also want to keep track of whether person is student or employee
 
 //write the type here
 
+typedef struct {
+    char name[50];
+    int age;
+    union {
+        struct {
+            double gpa;
+            char major[50];
+        } studentInfo;
+        struct {
+            char division[50];
+            int years;
+        } empInfo;
+    } personInfo;
+    enum {studentType, empType} personType;
+} PERSON;
 
 
 
@@ -243,15 +237,20 @@ student
 ECE, 3.2
 
 //how do I make a new PERSON for Bob?
+PERSON* p = malloc(sizeof(PERSON));
+strcpy(p->name, "Bob");
+p->age = 20;
+p->personInfo.studentInfo.gpa = 3.2;
+strcpy(p->personInfo.studentInfo.major, "ECE");
+p->personType = studentType;
 
 
+--> how do I print p's information?
 
+if (p->personType == studentType) {
+    //print all the stuff for a student
 
-PERSON* pers = (something);
-
---> how do I print pers' information?
-
-
+}
 
 
 ///////////////////////
