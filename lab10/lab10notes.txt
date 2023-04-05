@@ -116,16 +116,22 @@ typedef enum {false, true} BOOL;
 
 BOOL flag = false;
 
+
+
 ///////////////////////
 
 Printing enum - can print as an int, %d
 
 Would need an if/switch to look at value and manually print text
 
+
+
 typedef enum {red, green, blue} COLOR;
 COLOR ex = red;
 
 printf("%d\n", ex); //prints 0
+
+
 
 //how to print ex?
 //if-statement for all values, print text yourself
@@ -189,15 +195,6 @@ m.yen = 17;
 
 //////////////////////////
 
-Union and typedef:
-
-typedef union {
-    double dollars;
-    int yen;
-} MONEY;
-
-
-//////////////////////////
 
 Combining user-defined types.
 
@@ -213,21 +210,9 @@ Also want to keep track of whether person is student or employee
 
 //write the type here
 
-typedef struct {
-    char name[50];
-    int age;
-    union {
-        struct {
-            double gpa;
-            char major[50];
-        } studentInfo;
-        struct {
-            char division[50];
-            int years;
-        } empInfo;
-    } personInfo;
-    enum {studentType, empType} personType;
-} PERSON;
+
+
+
 
 
 
@@ -237,12 +222,9 @@ student
 ECE, 3.2
 
 //how do I make a new PERSON for Bob?
-PERSON* p = malloc(sizeof(PERSON));
-strcpy(p->name, "Bob");
-p->age = 20;
-p->personInfo.studentInfo.gpa = 3.2;
-strcpy(p->personInfo.studentInfo.major, "ECE");
-p->personType = studentType;
+
+
+
 
 
 --> how do I print p's information?
