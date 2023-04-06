@@ -1,18 +1,7 @@
-Project 3 - due Wed April 5
+Project 3 - can be turned in tonight for 10% penalty
 
-cases for "add" in sortedset:
-
-1) if the set is empty (if set->head == NULL)
-
-2) if the new item is less than the data in the head
-    then a new node with the new item should be inserted
-    in front (and becomes new head)
-
-3) if the new item is bigger than the data in the tail
-    then a new node with the new item should be inserted
-    in back (and becomes new tail)
-
-4) general case: the new item goes somewhere in the middle
+one more project in this class
+    - will be posted tomorrow or Monday
 
 
 //////////////////////////////
@@ -206,15 +195,24 @@ A person can be either: union
     - an employee (with a division and a years worked)
 Also want to keep track of whether person is student or employee
 
-
-
 //write the type here
 
 
-
-
-
-
+typedef struct {
+    char name[50];
+    int age;
+    union {
+        struct {
+            double gpa;
+            char major[50];
+        } studentInfo;
+        struct {
+            char div[50];
+            int years;
+        } empInfo;s
+    } personStored;
+    enum {studentType, empType} storedType;
+} PERSON;
 
 
 Bob Jones, age 20
@@ -223,6 +221,12 @@ ECE, 3.2
 
 //how do I make a new PERSON for Bob?
 
+PERSON* pers = malloc(sizeof(PERSON));
+pers->age = 20;
+strcpy(pers->name, "Bob");
+pers->personStored.studentInfo.gpa = 3.2;
+strcpy(pers->personStored.studentInfo.major, "ECE");
+pers->storedType = studentType;
 
 
 
