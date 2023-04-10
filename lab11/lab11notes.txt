@@ -226,6 +226,18 @@ Also good for debugging:
 #endif
 
 
+
+//////////////////////////
+
+Example: see preprocessor results
+
+gcc -E test.c -o test.i
+
+
+will see results of preprocessor in test.i file
+
+
+
 //////////////////////////
 
 Lab 11
@@ -235,3 +247,20 @@ Writing macros
 Using same header file (from different directory) in multiple projects
 
 Defining a different path for includes in a Makefile
+
+
+--> first, finish all the macros
+
+
+(Reminder: how do we remove the \n from an input string, buff?
+what includes are needed?)
+
+
+--> next, finish the test1.c main function
+--> next, write the Makefile for test 1
+        - use a previous Makefile
+        - read the lab carefully -- there will be some changes
+
+--> get test1 working
+
+--> repeat for test2

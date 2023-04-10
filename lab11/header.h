@@ -1,0 +1,1 @@
+#define INC(x) (x+1)
