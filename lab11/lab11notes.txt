@@ -1,5 +1,11 @@
 Project 4 due Wed May 3
 
+- expression trees
+
+x - 14 * y + (2 * x + 1)
+
+
+
 Regular lab next week
 
 Exam 2 is the week after (April 25)
@@ -18,6 +24,8 @@ The preprocessor runs before the compiler and processes the # lines
 
 It may add, remove, or change the code before the compiler sees it
 
+
+
 //////////////////////////
 
 #include <libraryfile.h>
@@ -33,6 +41,7 @@ definitions will be listed in the file.
 <> - tells preprocessor to look in the standard include directory
 "" - tells preprocessor to look in the current directory
     (or in the directories included in the build information)
+
 
 /////////////////////////
 
@@ -71,27 +80,25 @@ We can use like:
 
 int result = SUM(4, 5);
 
-    becomes:
-    int result = 4 + 5;
+    becomes?
+
+int result = 4+5;
+
 
 
 double val = SUM(3.2, 6.7);
 
-    becomes:
+    becomes?
 
-    double val = 3.2 + 6.7;
-
---> what does the preprocessor do with those lines?
-
-
+double val = 3.2 + 6.7;
 
 
 
 --> what if we did:
 
 char c = SUM(pet1, pet2);
-    char c = pet1 + pet2;
 
+char c = pet1 + pet2;
 
 Where pet1 and pet2 were objects of type PET?
 
@@ -107,6 +114,7 @@ condition ? value if true : value if false
 
 variable = (condition ? value if true : value if false);
 
+
 ////////////////////////
 
 More macros:
@@ -114,20 +122,23 @@ More macros:
 #define MAX(x, y) x > y ? x : y
 
 
+int big = 4 > 2 ? 4 : 2;
 
 
 #define FLUSH() while (getchar() != '\n')
 
 
+FLUSH();
 
-
-#define DIFF_SQUARE(x, y) x*x - y*y
+#define DIFF_SQUARE(x, y) (x)*(x) - (y)*(y)
 
 
 What if we do:
 
 int diff = DIFF_SQUARE(3-2, 4-2);
 
+
+int diff = 3-2*3-2 - 4-2*4-2;
 
 /////////////////////////
 
@@ -137,6 +148,12 @@ Write a ROUND macro to round a double to the nearest int
 
 positive vs negative numbers?
 
+#define ROUND(x) x < 0 ? (int)(x - 0.5) : (int)(x + 0.5)
+
+x was 4.2 => 4
+x was 4.7 => 5
+x was -4.2 => -4
+x was -4.7 => -5 
 
 /////////////////////////
 
