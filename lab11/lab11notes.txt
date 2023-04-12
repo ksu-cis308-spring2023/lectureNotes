@@ -8,7 +8,7 @@ x - 14 * y + (2 * x + 1)
 
 Regular lab next week
 
-Exam 2 is the week after (April 25)
+Exam 2 is the week after (Tues April 25 / Thurs April 27)
 
 Regular lab the last week of the semester
 
@@ -63,7 +63,7 @@ int nums[SIZE];
 
 --> what happens before the compiler sees the code?
 
-int nums[10];
+
 
 
 /////////////////////////
@@ -82,7 +82,7 @@ int result = SUM(4, 5);
 
     becomes?
 
-int result = 4+5;
+
 
 
 
@@ -90,7 +90,7 @@ double val = SUM(3.2, 6.7);
 
     becomes?
 
-double val = 3.2 + 6.7;
+
 
 
 
@@ -98,7 +98,7 @@ double val = 3.2 + 6.7;
 
 char c = SUM(pet1, pet2);
 
-char c = pet1 + pet2;
+
 
 Where pet1 and pet2 were objects of type PET?
 
@@ -122,7 +122,8 @@ More macros:
 #define MAX(x, y) x > y ? x : y
 
 
-int big = 4 > 2 ? 4 : 2;
+int big = MAX(x, y);
+
 
 
 #define FLUSH() while (getchar() != '\n')
@@ -130,7 +131,9 @@ int big = 4 > 2 ? 4 : 2;
 
 FLUSH();
 
-#define DIFF_SQUARE(x, y) (x)*(x) - (y)*(y)
+
+
+#define DIFF_SQUARE(x, y) x*x - y*y
 
 
 What if we do:
@@ -138,7 +141,8 @@ What if we do:
 int diff = DIFF_SQUARE(3-2, 4-2);
 
 
-int diff = 3-2*3-2 - 4-2*4-2;
+
+
 
 /////////////////////////
 
@@ -148,12 +152,9 @@ Write a ROUND macro to round a double to the nearest int
 
 positive vs negative numbers?
 
-#define ROUND(x) x < 0 ? (int)(x - 0.5) : (int)(x + 0.5)
 
-x was 4.2 => 4
-x was 4.7 => 5
-x was -4.2 => -4
-x was -4.7 => -5 
+
+
 
 /////////////////////////
 
