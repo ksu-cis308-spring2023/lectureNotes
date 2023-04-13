@@ -10,3 +10,7 @@ int main() {
 
     return 0;
 }
+
+int plus(int a, int b) {
+    return a + b;
+}

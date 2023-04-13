@@ -2,7 +2,7 @@ Project 4 due Wed May 3
 
 - expression trees
 
-x - 14 * y + (2 * x + 1)
+x - 14 * y + ( 2 * x + 1 )
 
 
 
@@ -55,7 +55,7 @@ with "value"...BEFORE the compiler sees the code.
 
 --> Good way to define the size of a constant-sized array
 
-#define SIZE 10
+#define SIZE 10;
 
 ...
 
@@ -63,7 +63,7 @@ int nums[SIZE];
 
 --> what happens before the compiler sees the code?
 
-
+int nums[10];
 
 
 /////////////////////////
@@ -82,6 +82,7 @@ int result = SUM(4, 5);
 
     becomes?
 
+int result = 4 + 5;
 
 
 
@@ -90,7 +91,7 @@ double val = SUM(3.2, 6.7);
 
     becomes?
 
-
+double val = 3.2 + 6.7;
 
 
 
@@ -98,6 +99,7 @@ double val = SUM(3.2, 6.7);
 
 char c = SUM(pet1, pet2);
 
+char c = pet1 + pet2;
 
 
 Where pet1 and pet2 were objects of type PET?
@@ -125,15 +127,20 @@ More macros:
 int big = MAX(x, y);
 
 
+int big = x > y ? x : y;
+
 
 #define FLUSH() while (getchar() != '\n')
 
 
 FLUSH();
 
+becomes:
+while (getchar() != '\n');
 
 
-#define DIFF_SQUARE(x, y) x*x - y*y
+
+#define DIFF_SQUARE(x, y) (x)*(x) - (y)*(y)
 
 
 What if we do:
@@ -141,7 +148,7 @@ What if we do:
 int diff = DIFF_SQUARE(3-2, 4-2);
 
 
-
+int diff = 3-2*3-2 - 4-2*4-2;
 
 
 /////////////////////////
@@ -153,7 +160,11 @@ Write a ROUND macro to round a double to the nearest int
 positive vs negative numbers?
 
 
+#define ROUND(x) (x) >= 0 ? (int)((x)+0.5) : (int)((x)-0.5)
 
+ROUND(4.2) --> 4
+ROUND(4.7) --> 5
+ROUND(-4.2)
 
 
 /////////////////////////
@@ -182,6 +193,7 @@ section of code
 #endif
 
 
+#include "header.h"
 #include "header.h"
 
 
