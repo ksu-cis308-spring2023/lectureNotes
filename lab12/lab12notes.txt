@@ -48,7 +48,23 @@ Here are some sample questions:
     - singer keeps voice range (bass, tenor, alto, soprano) and
         number of concerts performed
 
+typedef struct {
+    char name[50];
+    int age;
+    int years;
+    enum {isPainter, isSinger} artistType;
+    union {
+        struct {
+            enum {watercolor, oil, acrylic} paintType;
+            enum {realism, abstract, impressionist} style;
+        } painterInfo;
+        struct {
+            enum {bass, tenor, alto, soprano} voice;
+            int concerts;
+        } singerInfo;
+    } artistStored;
 
+} ARTIST;
 
 
 
@@ -58,15 +74,24 @@ Here are some sample questions:
 Dynamically create a particular artist, fill with values.
 Free memory.
 
+ARTIST** group = malloc(10*sizeof(ARTIST*));
 
 
 //initalize index 2
 //singer, "Bob Jones", 30, 5 yrs, bass, 2 concerts
 
+group[2] = malloc(sizeof(ARTIST));
+group[2]->artistType = isSinger;
+strcpy(group[2]->name, "Bob Jones");
+group[2]->age = 30;
+group[2]->years = 5;
+group[2]->artistStored.singerInfo.voice = bass;
+group[2]->artistStored.singerInfo.concerts = 2;
 
 
 //free the memory
-
+free(group[2]);
+free(group);
 
 
 3) Write a function that adds a new node to the end of a linked list.
@@ -79,22 +104,57 @@ typedef struct node {
 
 //return updated head
 NODE* addToEnd(NODE* head, int newData) {
-    
+    NODE* newnode = malloc(sizeof(NODE));
+    newnode->data = newData;
+    newnode->next = NULL;
 
-
+    if (head == NULL) {
+        return newnode;
+    }
+    else {
+        NODE* temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newnode;
+        return head;
+    }
 }
 
 practice: try doing the same thing with:
 
-void addToEnd(NODE** head, int newData)
+void addToEnd(NODE** head, int newData) {
+    NODE* newnode = malloc(sizeof(NODE));
+    newnode->data = newData;
+    newnode->next = NULL;
+
+    if (*head == NULL) {
+        *head = newnode;
+    }
+    else {
+        NODE* temp = *head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newnode;
+    }
+}
 
 
 elsewhere, if "front" was the address of our first node...
 
+NODE* front ....
+
 
 ...how would we add "2" to the end using each function?
 
+first function:
 
+front = addToEnd(front, 2);
+
+second function:
+
+addToEnd(&front, 2);
 
 /////////////////////////////////
 
@@ -145,15 +205,16 @@ int minus(int a, int b) {
 
 ///
 
-How could declare a function pointer to a function that
+How could declare a function pointer called opptr to a function that
     returns an int and takes 2 int parameters:
 
 
+int (*opptr) (int, int);
 
 
 --> How could we initialize our new function pointer?
 
-
+opptr = minus;
 
 
 ///////////////////////////////
@@ -172,9 +233,9 @@ result = ptr_name(params);
 result = (*ptr_name)(params);
 
 
---> call function pointed to by op_ptr, pass 4 and 3.
+--> call function pointed to by opptr, pass 4 and 3.
 
-
+int val = opptr(4, 3);
 
 /////////////////////////////
 
