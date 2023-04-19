@@ -16,7 +16,7 @@ int divide(int a, int b) {
     return a / b;
 }
 
-typedef int (*OP) (int, int);
+
 
 //Define doOperations function. Takes three parameters:
     //function pointer to a function that does the operation
@@ -24,27 +24,21 @@ typedef int (*OP) (int, int);
     //two ints to do the operation on
 //returns result of whatever operation function
 
-int doOperations(OP ptr, int x, int y) {
-    return ptr(x, y);
-}
+
 
 
 int main() {
     int num1 = 3;
     int num2 = 4;
 
-    OP operations[4] = {plus,minus,times,divide};
 
-    
-
-    //maybe user enters 0-3 into "index"
 
     //do operation num1 and num2
-    int answer = operations[index](num1, num2);
+    int answer;
+
+    //multiply num1 and num2 using doOperation
 
     printf("Answer: %d\n", answer);
-
-    //use only the doOperation function
 
     return 0;
 }
