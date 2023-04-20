@@ -4,19 +4,18 @@ Exam 2 next week (Thurs April 27)
 
 Normal lab during dead week
 
-Optional final during finals week (Fri May 12)
+Optional final during finals week
+    Friday, May 12 9:40-11:30 am in this room
 
 /////////////////////////
 
 Quick exam review
 
 Types of questions:
-- Determine what is printed by a code fragment
-- Write/use type definitions (using struct, enum, union, and/or typedef)
-- Write/use preprocessor constants and macros
-- Write a function following a specification, 
-    or a "code snippet" that is several lines long
-- Find errors in code
+- defining new types
+- writing code fragments
+- writing functions
+- writing/using preprocessor constants and macros
  
 
 Topics covered:
@@ -51,7 +50,22 @@ Here are some sample questions:
     - singer keeps voice range (bass, tenor, alto, soprano) and
         number of concerts performed
 
-
+typedef struct {
+    char name[50];
+    int age;
+    int years;
+    enum {isPainter, isSinger} artType;
+    union {
+        struct {
+            enum {watercolor, oil, acrylic} paintType;
+            enum {realism, abstract, impressionist} style;
+        } paintStuff;
+        struct {
+            enum {bass, tenor, alto, soprano} voice;
+            int concerts;
+        } singStuff;
+    } artStuff;
+} ARTIST;
 
 
 
@@ -60,14 +74,25 @@ Here are some sample questions:
 Dynamically create a particular artist, fill with values.
 Free memory.
 
+ARTIST** array = malloc(10*sizeof(ARTIST*));
 
 
 //initalize index 2
 //singer, "Bob Jones", 30, 5 yrs, bass, 2 concerts
 
+array[2] = malloc(sizeof(ARTIST));
+array[2]->age = 30;
+strcpy(array[2]->name, "Bob Jones");
+array[2]->artType = singer;
+array[2]->years = 5;
+array[2]->artStuff.singStuff.voice = bass;
+array[2]->artStuff.singStuff.concerts = 2;
 
 
 //free the memory
+
+free(array[2]);
+free(array);
 
 
 
@@ -81,13 +106,40 @@ typedef struct node {
 
 //return updated head
 NODE* addToEnd(NODE* head, int newData) {
-    
+    NODE* cur = malloc(sizeof(NODE));
+    cur->data = newData;
+    cur->next = NULL;
+
+    if (head == NULL) {
+        return cur;
+    }
+    else {
+        NODE* temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = cur;
+        return head;
+    }
 }
 
 do the same thing with this function:
 
 void addToEnd(NODE** head, int newData) {
-    
+    NODE* cur = malloc(sizeof(NODE));
+    cur->data = newData;
+    cur->next = NULL;
+
+    if (*head == NULL) {
+        *head = cur;
+    }
+    else {
+        NODE* temp = *head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = cur;
+    }
 }
 
 
@@ -101,10 +153,12 @@ NODE* front ....
 
 first function?
 
+front = addToEnd(front, 2);
 
 
 second function?
 
+addToEnd(&front, 2);
 
 
 
@@ -161,12 +215,12 @@ How could declare a function pointer called opptr to a function that
     returns an int and takes 2 int parameters:
 
 
-
+int (*opptr) (int, int);
 
 
 --> How could we initialize our new function pointer?
 
-
+opptr = minus;
 
 
 ///////////////////////////////
@@ -187,7 +241,7 @@ result = (*ptr_name)(params);
 
 --> call function pointed to by opptr, pass 4 and 3.
 
-
+int diff = opptr(4, 3);
 
 /////////////////////////////
 
