@@ -87,12 +87,13 @@ Example: test.c
 Lab 13: create linked list using a void* for the data
 
 can store ints, strings, or pets
-    for its data: void*
+    data field: void*
+
 
 Need to know: how to print each type
 
     How can we have a different print function for each type?
-    function pointer field
+
 
 
 

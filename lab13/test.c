@@ -2,19 +2,14 @@
 
 int main() {
     int num = 4;
-    void* ptr = &num;
-
+    void* ptr;
     //how to initialize ptr to point to num?
 
     //how to print num using ptr?
-    printf("%d\n", *((int*)ptr));
+    //(need to cast to actual pointer type first)
 
 
     char* str = "hello";
-    ptr = str;
-
-    printf("%c\n", ((char*)(ptr))[0]);
-    
     //make ptr point to hello
 
     //use ptr to print the "h"
