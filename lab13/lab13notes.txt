@@ -84,6 +84,14 @@ Example: test.c
 
 ////////////////////////
 
+void* ptr = (something);
+
+
+--> can we do ptr++?
+
+
+////////////////////////
+
 Lab 13: create linked list using a void* for the data
 
 can store ints, strings, or pets
