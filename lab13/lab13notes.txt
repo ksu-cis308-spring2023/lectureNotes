@@ -87,7 +87,7 @@ Example: test.c
 void* ptr = (something);
 
 
---> can we do ptr++?
+--> can we do ptr++? NO! we don't know what size the type is
 
 
 ////////////////////////
